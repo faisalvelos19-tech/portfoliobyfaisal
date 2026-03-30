@@ -1,0 +1,97 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <span class="section-label">Get In Touch</span>
+        <h1 class="page-title">Contact</h1>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="contact-layout">
+
+            <!-- Contact Info -->
+            <div class="contact-info-col">
+                <h2 class="contact-heading">Let's Talk</h2>
+                <p class="contact-subtext">
+                    Have a project in mind, a question, or just want to say hello?
+                    I'd love to hear from you.
+                </p>
+                <div class="contact-details">
+                    {% if profile and profile.email %}
+                    <div class="contact-item">
+                        <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+                        <div>
+                            <span class="contact-label">Email</span>
+                            <a href="mailto:{{ profile.email }}" class="contact-value">{{ profile.email }}</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if profile and profile.github %}
+                    <div class="contact-item">
+                        <span class="contact-icon"><i class="fab fa-github"></i></span>
+                        <div>
+                            <span class="contact-label">GitHub</span>
+                            <a href="{{ profile.github }}" target="_blank" class="contact-value">{{ profile.github }}</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if profile and profile.linkedin %}
+                    <div class="contact-item">
+                        <span class="contact-icon"><i class="fab fa-linkedin"></i></span>
+                        <div>
+                            <span class="contact-label">LinkedIn</span>
+                            <a href="{{ profile.linkedin }}" target="_blank" class="contact-value">{{ profile.linkedin }}</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form-col">
+                <form method="POST" class="contact-form" novalidate>
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="{{ form.name.id_for_label }}">Name</label>
+                        {{ form.name }}
+                        {% if form.name.errors %}
+                        <span class="form-error">{{ form.name.errors|join:", " }}</span>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.email.id_for_label }}">Email</label>
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                        <span class="form-error">{{ form.email.errors|join:", " }}</span>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.subject.id_for_label }}">Subject</label>
+                        {{ form.subject }}
+                        {% if form.subject.errors %}
+                        <span class="form-error">{{ form.subject.errors|join:", " }}</span>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.message.id_for_label }}">Message</label>
+                        {{ form.message }}
+                        {% if form.message.errors %}
+                        <span class="form-error">{{ form.message.errors|join:", " }}</span>
+                        {% endif %}
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        Send Message <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

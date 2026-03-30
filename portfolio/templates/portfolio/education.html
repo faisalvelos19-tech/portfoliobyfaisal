@@ -1,0 +1,41 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block title %}Education{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <span class="section-label">Academic Background</span>
+        <h1 class="page-title">Education</h1>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        {% if education_list %}
+        <div class="timeline">
+            {% for edu in education_list %}
+            <div class="timeline-item animate-card" style="--card-delay:{{ forloop.counter }}00ms">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <span class="timeline-year">{{ edu.get_year_range }}</span>
+                    <h3 class="timeline-school">{{ edu.school }}</h3>
+                    <p class="timeline-degree">{{ edu.degree }}</p>
+                    <p class="timeline-program"><i class="fas fa-graduation-cap"></i> {{ edu.program }}</p>
+                    {% if edu.description %}
+                    <p class="timeline-desc">{{ edu.description }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <i class="fas fa-graduation-cap"></i>
+            <p>No education records yet. Add them via the admin panel.</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

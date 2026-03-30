@@ -1,0 +1,58 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block title %}Projects{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <span class="section-label">My Work</span>
+        <h1 class="page-title">Projects</h1>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        {% if projects %}
+        <div class="projects-full-grid">
+            {% for project in projects %}
+            <div class="project-card-full animate-card" style="--card-delay:{{ forloop.counter }}00ms">
+                {% if project.image %}
+                <div class="project-img-wrap">
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-img">
+                </div>
+                {% endif %}
+                <div class="project-card-body">
+                    <div class="project-number">0{{ forloop.counter }}</div>
+                    <h3 class="project-title">{{ project.title }}</h3>
+                    <p class="project-desc">{{ project.description }}</p>
+                    <div class="project-tech">
+                        {% for tech in project.get_technologies_list %}
+                        <span class="tech-badge">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="project-links">
+                        {% if project.github_link %}
+                        <a href="{{ project.github_link }}" target="_blank" class="btn btn-sm btn-ghost">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                        {% endif %}
+                        {% if project.live_link %}
+                        <a href="{{ project.live_link }}" target="_blank" class="btn btn-sm btn-primary">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <i class="fas fa-folder-open"></i>
+            <p>No projects added yet. Add them via the admin panel.</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

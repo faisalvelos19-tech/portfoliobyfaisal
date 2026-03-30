@@ -1,0 +1,55 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <span class="section-label">Who I Am</span>
+        <h1 class="page-title">About Me</h1>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="about-layout">
+            <div class="about-photo-col">
+                {% if profile and profile.profile_photo %}
+                <div class="about-photo-frame">
+                    <img src="{{ profile.profile_photo.url }}" alt="{{ profile.name }}" class="about-photo">
+                </div>
+                {% else %}
+                <div class="about-photo-frame">
+                    <div class="about-photo-placeholder">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            <div class="about-content-col">
+                <h2 class="about-name">{% if profile %}{{ profile.name }}{% endif %}</h2>
+                <p class="about-tagline">{% if profile %}{{ profile.tagline }}{% endif %}</p>
+                <div class="about-bio">
+                    {% if profile %}
+                    {{ profile.bio|linebreaksbr }}
+                    {% else %}
+                    <p>Add your bio in the admin panel.</p>
+                    {% endif %}
+                </div>
+                {% if profile and profile.career_interests %}
+                <div class="about-interests">
+                    <h3>Career Interests & Goals</h3>
+                    <p>{{ profile.career_interests }}</p>
+                </div>
+                {% endif %}
+                <div class="about-social">
+                    {% if profile.github %}<a href="{{ profile.github }}" target="_blank" class="social-btn"><i class="fab fa-github"></i> GitHub</a>{% endif %}
+                    {% if profile.linkedin %}<a href="{{ profile.linkedin }}" target="_blank" class="social-btn"><i class="fab fa-linkedin"></i> LinkedIn</a>{% endif %}
+                    {% if profile.email %}<a href="mailto:{{ profile.email }}" class="social-btn"><i class="fas fa-envelope"></i> Email</a>{% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Portfolio{% endblock %} {% if profile %}| {{ profile.name }}{% endif %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="{% url 'home' %}" class="nav-logo">
+            {% if profile %}<span class="logo-text">{{ profile.name|truncatewords:1 }}</span>{% else %}<span class="logo-text">Portfolio</span>{% endif %}
+            <span class="logo-dot">.</span>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="{% url 'home' %}" class="nav-link {% if active == 'home' %}active{% endif %}">Home</a></li>
+            <li><a href="{% url 'about' %}" class="nav-link {% if active == 'about' %}active{% endif %}">About</a></li>
+            <li><a href="{% url 'skills' %}" class="nav-link {% if active == 'skills' %}active{% endif %}">Skills</a></li>
+            <li><a href="{% url 'projects' %}" class="nav-link {% if active == 'projects' %}active{% endif %}">Projects</a></li>
+            <li><a href="{% url 'education' %}" class="nav-link {% if active == 'education' %}active{% endif %}">Education</a></li>
+            <li><a href="{% url 'contact' %}" class="nav-link {% if active == 'contact' %}active{% endif %}">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<main>
+    {% if messages %}
+    <div class="messages-container">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% block content %}{% endblock %}
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <p class="footer-name">{% if profile %}{{ profile.name }}{% endif %}</p>
+        <div class="footer-links">
+            {% if profile.github %}<a href="{{ profile.github }}" target="_blank"><i class="fab fa-github"></i></a>{% endif %}
+            {% if profile.linkedin %}<a href="{{ profile.linkedin }}" target="_blank"><i class="fab fa-linkedin"></i></a>{% endif %}
+            {% if profile.twitter %}<a href="{{ profile.twitter }}" target="_blank"><i class="fab fa-twitter"></i></a>{% endif %}
+            {% if profile.email %}<a href="mailto:{{ profile.email }}"><i class="fas fa-envelope"></i></a>{% endif %}
+        </div>
+        <p class="footer-copy">&copy; {% now "Y" %} {% if profile %}{{ profile.name }}{% endif %}. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="{% static 'portfolio/js/main.js' %}"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

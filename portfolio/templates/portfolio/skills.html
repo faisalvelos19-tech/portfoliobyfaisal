@@ -1,0 +1,68 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block title %}Skills{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <span class="section-label">Expertise</span>
+        <h1 class="page-title">Skills</h1>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        {% if languages %}
+        <div class="skills-group">
+            <h2 class="skills-group-title"><span class="skills-icon"><i class="fas fa-code"></i></span> Programming Languages</h2>
+            <div class="skills-grid">
+                {% for skill in languages %}
+                <div class="skill-chip animate-card" style="--card-delay:{{ forloop.counter }}00ms">{{ skill.name }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if frameworks %}
+        <div class="skills-group">
+            <h2 class="skills-group-title"><span class="skills-icon"><i class="fas fa-layer-group"></i></span> Frameworks & Libraries</h2>
+            <div class="skills-grid">
+                {% for skill in frameworks %}
+                <div class="skill-chip animate-card" style="--card-delay:{{ forloop.counter }}00ms">{{ skill.name }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if tools %}
+        <div class="skills-group">
+            <h2 class="skills-group-title"><span class="skills-icon"><i class="fas fa-tools"></i></span> Tools & Software</h2>
+            <div class="skills-grid">
+                {% for skill in tools %}
+                <div class="skill-chip animate-card" style="--card-delay:{{ forloop.counter }}00ms">{{ skill.name }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if others %}
+        <div class="skills-group">
+            <h2 class="skills-group-title"><span class="skills-icon"><i class="fas fa-star"></i></span> Other Skills</h2>
+            <div class="skills-grid">
+                {% for skill in others %}
+                <div class="skill-chip animate-card" style="--card-delay:{{ forloop.counter }}00ms">{{ skill.name }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if not languages and not frameworks and not tools and not others %}
+        <div class="empty-state">
+            <i class="fas fa-tools"></i>
+            <p>No skills added yet. Add them via the admin panel.</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
