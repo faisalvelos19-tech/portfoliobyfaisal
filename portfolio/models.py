@@ -44,6 +44,8 @@ class Project(models.Model):
     technologies = models.CharField(max_length=300, help_text="Comma-separated list of technologies")
     github_link = models.URLField(blank=True)
     live_link = models.URLField(blank=True)
+    tiktok_link = models.URLField(blank=True)
+    facebook_link = models.URLField(blank=True)
     image = models.ImageField(upload_to='projects/', blank=True, null=True)
     order = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -56,7 +58,6 @@ class Project(models.Model):
 
     class Meta:
         ordering = ['order', '-created_at']
-
 
 class Education(models.Model):
     school = models.CharField(max_length=200)

@@ -34,12 +34,22 @@
                     <div class="project-links">
                         {% if project.github_link %}
                         <a href="{{ project.github_link }}" target="_blank" class="btn btn-sm btn-ghost">
-                            <i class="fab fa-github"></i> View on GitHub
+                            <i class="fab fa-github"></i> GitHub
                         </a>
                         {% endif %}
                         {% if project.live_link %}
                         <a href="{{ project.live_link }}" target="_blank" class="btn btn-sm btn-primary">
-                            <i class="fas fa-external-link-alt"></i> Live Demo
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                        {% endif %}
+                        {% if project.tiktok_link %}
+                        <a href="{{ project.tiktok_link }}" target="_blank" class="btn btn-sm btn-primary">
+                            <i class="fab fa-tiktok"></i> TikTok
+                        </a>
+                        {% endif %}
+                        {% if project.facebook_link %}
+                        <a href="{{ project.facebook_link }}" target="_blank" class="btn btn-sm btn-primary">
+                            <i class="fab fa-facebook"></i> Facebook
                         </a>
                         {% endif %}
                     </div>
