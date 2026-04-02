@@ -7,15 +7,15 @@
 <!-- Hero Section -->
 <section class="hero">
     <div class="hero-bg">
-        <div class="hero-orb hero-orb-1"></div>
-        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-glow"></div>
+        <div class=""></div>
         <div class="hero-grid"></div>
     </div>
     <div class="hero-container">
         <div class="hero-content">
-            <p class="hero-greeting animate-in" style="--delay:0.1s">Hello, I'm</p>
+            <p class="hero-label animate-in" style="--delay:0.1s">Hello, I'm</p>
             <h1 class="hero-name animate-in" style="--delay:0.2s">
-                {% if profile %}{{ profile.name }}{% else %}Your Name{% endif %}
+                {% if profile %}<span>{{ profile.name }}</span>{% else %}<span>Your Name</span>{% endif %}
             </h1>
             <p class="hero-tagline animate-in" style="--delay:0.3s">
                 {% if profile %}{{ profile.tagline }}{% else %}Developer & Creator{% endif %}
