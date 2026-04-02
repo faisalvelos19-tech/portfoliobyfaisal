@@ -23,6 +23,7 @@ class Skill(models.Model):
     CATEGORY_CHOICES = [
         ('language', 'Programming Language'),
         ('framework', 'Framework / Library'),
+        ('editing', 'Editing Softwares'),
         ('tool', 'Tool / Software'),
         ('other', 'Other'),
     ]
