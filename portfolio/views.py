@@ -29,12 +29,14 @@ def skills(request):
     languages = Skill.objects.filter(category='language')
     frameworks = Skill.objects.filter(category='framework')
     tools = Skill.objects.filter(category='tool')
+    editing = Skill.objects.filter(category='editing')
     others = Skill.objects.filter(category='other')
     context = {
         'profile': profile,
         'languages': languages,
         'frameworks': frameworks,
         'tools': tools,
+        'editing': editing,
         'others': others,
         'active': 'skills',
     }

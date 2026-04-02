@@ -46,6 +46,17 @@
         </div>
         {% endif %}
 
+        {% if editing %}
+        <div class="skills-group">
+            <h2 class="skills-group-title"><span class="skills-icon"><i class="fas fa-film"></i></span> Editing Softwares</h2>
+            <div class="skills-grid">
+                {% for skill in editing %}
+                <div class="skill-chip animate-card" style="--card-delay:{{ forloop.counter }}00ms">{{ skill.name }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
         {% if others %}
         <div class="skills-group">
             <h2 class="skills-group-title"><span class="skills-icon"><i class="fas fa-star"></i></span> Other Skills</h2>
@@ -57,7 +68,7 @@
         </div>
         {% endif %}
 
-        {% if not languages and not frameworks and not tools and not others %}
+        {% if not languages and not frameworks and not tools and not editing and not others %}
         <div class="empty-state">
             <i class="fas fa-tools"></i>
             <p>No skills added yet. Add them via the admin panel.</p>
